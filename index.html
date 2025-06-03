@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <title>Azure Dreams PS1 (De-)Randomizer</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet"
+          href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+  </head>
+  <body>
+    <div id="version"></div>
+    <div id="content">
+      <div class="hflow">
+        <img src="images/DieFull.png" alt="Azure Dreams inspired die" style="width:100px; height:100px;">
+        <div class="vflow">
+          <h1>Azure Dreams PS1 (De-)Randomizer</h1>
+          <div>
+            by pro_grammar
+          </div>
+        </div>
+      </div>
+      <form id="form" class="pure-g">
+        <p id="target" class="pure-u-1">
+          <span id="status"></span>
+          <input id="file" type="file" accept=".bin">
+        </p>
+        <div class="pure-u-1">
+          <fieldset>
+            <legend>Gameplay options</legend>
+            <div class="pure-g">
+              <div class="pure-u-1">
+                <label for="seed">Seed:</label>
+                <input id="seed" type="text" placeholder="Optional">
+              </div>
+              <div class="pure-u-12-24">
+                <input id="preset" type="checkbox">
+                <label for="preset">Preset</label>
+                <select id="preset-id"></select>
+                <span class="tooltip-wrapper">
+                  <span class="tooltip-indicator">?</span>
+                  <span class="tooltip hidden">
+                    <span id="preset-description"></span>
+                    <span id="preset-author"></span>
+                  </span>
+                </span>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="derandomize" type="checkbox">
+                <label for="derandomize">Seeded tower (de-randomize floors)</label>
+              </div>
+              <div class="pure-u-1">
+              <br>
+                <em>Skips</em>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="intro-skip" type="checkbox">
+                <label for="intro-skip">Skip the intro story</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="tutorial-skip" type="checkbox">
+                <label for="tutorial-skip">Skip first floor tutorial text</label>
+              </div>
+              <div class="pure-u-12-24">
+              </div>
+              <div class="pure-u-12-24">
+                <input id="fast-tutorial" type="checkbox">
+                <label for="fast-tutorial">Fast tutorial floor</label>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Randomizations</em>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="themes" type="checkbox">
+                <label for="themes">Randomize floor themes (appearances)</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="eggomizer" type="checkbox">
+                <label for="eggomizer">Randomize eggs</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="enemizer" type="checkbox">
+                <label for="enemizer">Randomize enemy monsters</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="starting-items" type="checkbox">
+                <label for="starting-items">Randomize starting items</label>
+              </div>
+              <div class="pure-u-12-24">
+                <div id="barongs-container">
+                  <input id="barongs" type="checkbox">
+                  <label for="barongs">Randomize Barong floors</label>
+                </div>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="ball-elements" type="checkbox">
+                <label for="ball-elements">Randomize spell ball elements</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="spells" type="checkbox">
+                <label for="spells">Randomize monster spells</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="animations" type="checkbox">
+                <label for="animations">(Highly unstable) Randomize monster appearances/animations</label>
+              </div>
+              <div class="pure-u-12-24">
+                <label for="monster-elements">Enemy elements</label>
+                <select id="monster-elements">
+                  <option value=0>Default</option>
+                  <option value=1>Randomized by type</option>
+                  <option value=2>Random (default spell element)</option>
+                  <option value=3>Random (random spell element)</option>
+                </select>
+              </div>
+              <div id="koh-element-select" class="pure-u-12-24">
+                <label for="koh-element">Koh's element</label>
+                <select id="koh-element"></select>
+              </div>
+              <div id="starter-select" class="pure-u-12-24">
+                <label for="starter">Starting monster</label>
+                <select id="starter"></select>
+              </div>
+              <div id="starter-element-select" class="pure-u-12-24">
+                <label for="starter-element">Starting monster's element</label>
+                <select id="starter-element"></select>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Modifications</em>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="quest-reload" type="checkbox">
+                <label for="quest-reload">Tower saves can be loaded more than once</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="item-cap" type="checkbox">
+                <label for="item-cap">Remove limit on items brought into tower</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="floor2" type="checkbox">
+                <label for="floor2">Floor 2 is always the Ghosh/Selfi floor</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="blue-collar" type="checkbox">
+                <label for="blue-collar">Start with blue collar</label>
+              </div>
+              <div id="hidden-spells-select" class="pure-u-12-24">
+                <label for="hidden-spells">Dormant spells awakened for</label>
+                <select id="hidden-spells"></select>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="super-koh" type="checkbox">
+                <label for="super-koh">All monster types can be lifted & pushed</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="non-native-spells-level" type="checkbox">
+                <label for="non-native-spells-level">Spells level up regardless of monster's element</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="tutorial-barong" type="checkbox">
+                <label for="tutorial-barong">Barong on tutorial floor</label>
+              </div>
+              <div id="monster-spawns-select" class="pure-u-12-24">
+                <label for="monster-spawns">Monster spawn rate</label>
+                <select id="monster-spawns">
+                <!-- <option value=0>Off</option> -->
+                  <option value=1>Very low</option>
+                  <option value=2>Low</option>
+                  <option value=3>Normal</option>
+                  <option value=4>High</option>
+                  <option value=5>Very high</option>
+                  <option value=6>Max</option>
+                </select>
+              </div>
+              <div id="elevator-spawns-select" class="pure-u-12-24">
+                <label for="elevator-spawns">Elevator spawn rate</label>
+                <select id="elevator-spawns">
+                  <option value=63>Normal</option>
+                  <option value=7>Increased</option>
+                  <option value=3>High</option>
+                  <option value=1>Very high</option>
+                  <option value=0>Max</option>
+                </select>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Special items</em>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="portable-elevators" type="checkbox">
+                <label for="portable-elevators">Spawn portable elevators</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="new-balls" type="checkbox">
+                <label for="new-balls">Spawn new spell balls</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="barong-items" type="checkbox">
+                <label for="barong-items">Spawn Barong-only items</label>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Challenges</em>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="second-tower" type="checkbox">
+                <label for="second-tower">Enable second tower</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="single-room" type="checkbox">
+                <label for="single-room">All single-room floors</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="survival" type="checkbox">
+                <label for="survival">Survival (20 item challenge)</label>
+              </div>
+              <div id="endurance-select" class="pure-u-12-24">
+                <label for="endurance">Endurance (99 floors)</label>
+                <select id="endurance">
+                  <option value=0>Off</option>
+                  <option value=30>Easy (+30 levels / 40 floors)</option>
+                  <option value=40>Normal (+40 / 40 floors)</option>
+                  <option value=50>Hard (+50 / 40 floors)</option>
+                </select>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="boss" type="checkbox">
+                <label for="boss">True boss fight</label>
+              </div>
+              <div id="time-difficulty-select" class="pure-u-12-24">
+                <label for="time-difficulty">Enemy levels</label>
+                <select id="time-difficulty">
+                  <option value=0>are unchanged</option>
+                  <option value=5>+1 per 18 minutes</option>
+                  <option value=4>+1 per 9 minutes</option>
+                  <option value=3>+1 per 4 minutes</option>
+                  <option value=2>+1 per 2 minutes</option>
+                  <option value=1>+1 every minute</option>
+                </select>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Traps</em>
+                <span class="tooltip-wrapper">
+                  <span class="tooltip-indicator">?</span>
+                  <span class="tooltip hidden">
+                    <span>The default options are not all "Average" because they reflect the actual settings in the game.
+                      The game normally spawns traps in a peculiar way, so the trap customization options may not work as you expect
+                      unless you check the option "Make trap spawns match above selections more closely".
+                    </span>
+                  </span>
+                </span>
+              </div>
+              <div id="trap-spawns-select" class="pure-u-12-24">
+                <label for="trap-spawns">Trap spawn rate</label>
+                <select id="trap-spawns"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-reversal">Reversal</label>
+                <select id="trap-reversal"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-slow">Slow</label>
+                <select id="trap-slow"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-warp">Warp</label>
+                <select id="trap-warp"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-goup">Go Up</label>
+                <select id="trap-goup"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-chaos">Chaos</label>
+                <select id="trap-chaos"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-bomb">Bomb</label>
+                <select id="trap-bomb"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-slam">Slam</label>
+                <select id="trap-slam"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-sleep">Sleep</label>
+                <select id="trap-sleep"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-blinder">Blinder</label>
+                <select id="trap-blinder"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-poison">Poison</label>
+                <select id="trap-poison"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-prison">Prison</label>
+                <select id="trap-prison"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-frog">Frog</label>
+                <select id="trap-frog"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-bump">Bump</label>
+                <select id="trap-bump"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-crack">Crack</label>
+                <select id="trap-crack"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-upheaval">Upheaval</label>
+                <select id="trap-upheaval"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-seal">Seal</label>
+                <select id="trap-seal"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-rust">Rust</label>
+                <select id="trap-rust"></select>
+              </div>
+              <div class="pure-u-6-24">
+                <label for="trap-monster-den">Monster den</label>
+                <select id="trap-monster-den"></select>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="alt-trap-algorithm" type="checkbox">
+                <label for="alt-trap-algorithm">Make trap spawns match above selections more closely</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="go-down-traps" type="checkbox">
+                <label for="go-down-traps">Replace Go Up traps with Go Down traps</label>
+              </div>
+              <div class="pure-u-1" hidden>
+                <input id="experimental-changes" type="checkbox">
+                <label for="experimental-changes">Experimental Changes</label>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Bug fixes</em> (<a href="guide/bugs.html">listing</a>)
+              </div>
+              <div class="pure-u-12-24">
+                <input id="fix-crashes" type="checkbox">
+                <label for="fix-crashes">Fix some types of crashes</label>
+              </div>
+              <div class="pure-u-12-24">
+                <input id="fix-bugs" type="checkbox">
+                <label for="fix-bugs">Fix some minor bugs</label>
+              </div>
+              <div class="pure-u-1">
+                <br>
+                <em>Customizations</em>
+              </div>
+              <div class="pure-u-12-24">
+                <label for="custom-floor-file"><a href="customFloor/">Custom floor file</a></label>
+                <input id="custom-floor-file" type="file" accept=".json">
+              </div>
+              <div class="pure-u-12-24">
+                <label for="custom-palettes-file"><a href="customPalettes/">Custom palettes (accessibility)</a></label>
+                <span class="tooltip-wrapper">
+                  <span class="tooltip-indicator">?</span>
+                  <span class="tooltip hidden">
+                    <span>It can be difficult for players to distinguish the elements of some monsters based on color, especially for players with
+                      color vision deficiency or color blindness. This feature allows users to create a set of custom palettes for each monster and element
+                      combination that meets their particular needs. Using custom palettes does not change the checksum generated, so players with different
+                      color needs can use the same seed URL and set their own custom palette file without getting a checksum error.
+                    </span>
+                  </span>
+                </span>
+                <input id="custom-palettes-file" type="file" accept=".json">
+              </div>
+              <div class="pure-u-12-24">
+                <label for="custom-spawns-file"><a href="customSpawns/">Custom monster spawns</a></label>
+                <input id="custom-spawns-file" type="file" accept=".json">
+              </div>
+              <div class="pure-u-1">
+                <input id="clear"
+                       type="submit"
+                       class="pure-button hidden"
+                       value="Clear">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Other Options</legend>
+            <div class="pure-g">
+              <div class="pure-u-1">
+                <input id="append-seed" type="checkbox">
+                <label for="append-seed">Append seed to filename</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="pure-u-10-24 spoilers" hidden>
+          <textarea id="spoilers" rows="8" cols="32" disabled="disabled">
+          </textarea>
+        </div>
+        <p class="pure-u-1">
+          <input id="randomize"
+                 type="submit"
+                 class="pure-button pure-button-primary"
+                 disabled="disabled"
+                 value="Randomize">
+          <input id="makeCue"
+                 type="submit"
+                 class="pure-button"
+                 disabled="disabled"
+                 value="Create CUE">
+          <input id="copy"
+                 type="submit"
+                 class="pure-button"
+                 value="Copy seed">
+        </p>
+        <a id="download" style="display:none"></a>
+        <a id="downloadCue" style="display:none"></a>
+        <div id="loader"></div>
+      </form>
+      <div id="notification">Copied to clipboard</div>
+      <hr>
+      <h2><a name="help">Help</a></h2>
+      <p>
+        This (de-)randomizer targets the original NTSC-U release of
+        <a href="http://redump.org/disc/2424/"><i>Azure Dreams</i> (SLUS-00614)</a>. You will need an image of your game
+        disc in BIN/CUE format. <a href="gbc/">Click here</a> for the GBC version of this tool.
+      </p>
+      <p>
+        To use this site, first put your BIN file into the top box.
+        Next, choose whatever options you want to use.
+        If you cannot change any options, either a preset is selected (uncheck "Preset" to change options) or the link you clicked contained a seed
+        (in which case you should use the same settings as the other person).
+        Now click Randomize and a new BIN file will be created.
+      </p>
+      <p>
+        If the seed name is appended to your randomized image filename after
+        downloading, you will need create a new CUE file using the Create CUE button
+        (or modify your CUE file track listing to reference the new filename).
+      </p>
+      <p>
+        Do not overwrite your original BIN file; keep it somewhere safe or you may need to obtain it again from your original disc.
+      </p>
+      <hr>
+      <h2><a name="about">About</a></h2>
+      <p>
+        The (de-)randomizer sets the each floor layout based off of the floor number, number of climbs up the tower,
+        and a random seed. As such, each trip up the tower should be unique but consistent with anyone else using the same seed.
+      </p>
+      <p>
+        Various randomization and other options are also available, but only tutorial and intro skips are enabled under the "Safe" preset.
+      </p>
+      <p>
+        This (de-)randomizer is a fan project and is not affiliated with Konami/KCET, the developer and publisher of Azure Dreams.
+        Please support the official release.
+      </p>
+      <hr>
+      <h2><a name="links">Links and Acknowledgments</a></h2>
+      <ul>
+        <li><a href="guide/">Azure Dreams PS1 Encyclopedia</a>, a compendium of facts about the game (unit stats, etc).</li>
+        <li><a href="gbc/">Azure Dreams GBC (De-)randomizer</a>, a tool for the GBC version.</li>
+        <li><a href="https://discordapp.com/invite/m2dB3m7">Azure Dreams Speedruns</a>, an AD discord server. All are welcome, from casual fans to speedrunners.</li>
+        <li><a href="https://sotn.io/">SotN Randomizer</a>, from which this project is derived.
+               (under the terms of the <a href="https://github.com/3snowp7im/SotN-Randomizer/blob/master/LICENSE">WTFPL</a> - thanks Wild Mouse).</li>
+        <li><a href="https://twitter.com/sustainna">Sustainna</a>, for creating the site's icon, favicon, and 404 page image.</li>
+        <li><a href="https://www.mozilla.org/en-US/MPL/">Mozilla Public License 2.0</a>, the license under which this software is released.</li>
+      </ul>
+      <hr>
+      <h2><a name="bugs">Bugs</a></h2>
+      <p>
+        Known issues:
+        <ul>
+          <li>When randomizing starting items or eggs, the eggs of evolved monsters or Kewne will appear in-game as just " egg" [sic].</li>
+          <li>In seeded tower mode, initial monster spawns after the event on floor 31 are not consistent.</li>
+          <li>In seeded tower mode, initial monster spawns vary based on the number of collared familiars.</li>
+          <li>In seeded tower mode, initial spawns can vary depending on whether or not there are 2+ wind crystals in the inventory.</li>
+          <li>Some monster ability names start with the wrong letter of the alphabet.</li>
+        </ul>
+        For a listing of bugs found in the original game, including whether a randomizer option can fix them, see <a href="guide/bugs.html">here</a>.
+      </p>
+      <p>
+        Please report any other issues, especially inconsistent spawns of a given floor on the same trip up the tower (when seeded tower is enabled) using
+        <a href="https://github.com/ProGrammar-R/ProGrammar-R.github.io/issues/new">GitHub issues</a>
+        or the #randomizer channel in the <a href="https://discordapp.com/invite/m2dB3m7">Azure Dreams Speedruns</a> discord. Please be clear whether you
+        are referring to the PS1 or GBC version of the game.
+      </p>
+      <hr>
+      <h2><a name="changelog" href="changelog.html">Changelog</a></h2>
+      <h3><time>September 10, 2020</time></h3>
+      <ul>
+        <li>v3.7.0 Added a tool to <a href="customSpawns/">customize monster spawns</a>, which allows you to specify which monsters appear
+          on each floor, at what level, and with what frequency. You could fill the tower with a more carefully balanced mix of monsters than
+          simply randomizing would result in, or you could fill the tower with nothing but Pickets if you want. Also made some improvements to randomizing
+          appearances; the option is still highly unstable, but might last longer before crashing.
+        </li>
+      </ul>
+      <h3><time>August 26, 2020</time></h3>
+      <ul>
+        <li>v3.6.0 Added a simple template selector and movement view mode to <a href="customFloor/">custom floor editor</a>.
+          Together, these can allow players to easily view and see how to navigate the various pre-defined floor 1 layouts.
+          Corrected a bug that prevented <a href="guide/units/unit.html?name=Koh">Koh's stats</a> from being viewable in the encyclopedia using
+          the link provided in the unit index. Added a <a href="guide/floors/">floors</a> section to the encyclopedia to help players and commentators
+          quickly see which monsters and eggs can be found on particular floors.
+        </li>
+      </ul>
+      <h3><time>July 29, 2020</time></h3>
+      <ul>
+        <li>v3.5.2 Fixed issue where trap customizations would not load from seed URLs.
+          Note that seed URLs with spell randomization on generated prior to this patch will no longer work as expected, as that flag has been
+          changed from 'r' to 'R'. Provided that the seed URL doesn't have a checksum, you can manually update this and the seed URL will work
+          once again. Fixed a bug where the elements of monster spells would always match the monster's default element.
+        </li>
+      </ul>
+      <h3><time>July 26, 2020</time></h3>
+      <ul>
+        <li>v3.5.1 Marked the below option as highly unstable, as it can result in crashes.
+        </li>
+        <li>v3.5.0 Added option to randomize monster appearances. See tooltip on option for more information.
+        </li>
+      </ul>
+      <h3><time>July 22, 2020</time></h3>
+      <ul>
+        <li>v3.4.0 Added an option to randomize monster spells. Added an option to allow Koh to push and attempt to pick up all monsters.
+        </li>
+      </ul>
+      <h3><time>July 12, 2020</time></h3>
+      <ul>
+        <li>v3.3.0 Added STARS tournament preset, and renamed existing tournament preset. 
+          Changed URL structure of <a href="guide/units/">units guide pages</a> to get rid of the need for frames and added page for
+          <a href="guide/mechanics/damage.html">damage calculation</a>. Fixed 404 page.
+        </li>
+      </ul>
+      <h3><time>July 5, 2020</time></h3>
+      <ul>
+        <li>v3.2.1 Added details on <a href="guide/mechanics/stats.html">stat calculation</a> to the guide.
+        </li>
+        <li>v3.2.0 Added an <a href="guide/">online guide to the game</a>. It primarily has information about units at the moment,
+          but it will be expanded over time. Added an option to change or randomize Koh's element. To see which element Koh has
+          if you have chosen Random, attack an enemy without using mix-magic or an elemental weapon and observe the color and style
+          of explosion produced.
+        </li>
+      </ul>
+      <h3><time>June 22, 2020</time></h3>
+      <ul>
+        <li>v3.1.0 Added version, seed URL, and timestamp to CUE files generated by the site. If you are submitting a run to the
+          leaderboards and don't copy the seed URL at the time of seed generation, just open the CUE file as a text file to retrieve this info.
+          Fixed how seed URLs are generated and loaded when a checksum isn't available. Fixed a minor issue with copying/pasting palettes in
+          the <a name="customPalettesEditor" href="customPalettes/">custom palettes editor</a>.
+        </li>
+      </ul>
+      <h3><time>June 9, 2020</time></h3>
+      <ul>
+        <li>v3.0.1 Changing spritesheet no longer changes active colorway if an extra colorway is selected.
+        </li>
+        <li>v3.0.0 Added support for palettes beyond the four basic palettes in the custom palette editor. These extra palettes are used
+          for things like projectiles, effects, dark Pulunpas, etc. This required a changed to the format of custom palettes such that
+          old versions are not compatible with the current version of the randomizer. Added support for copying/pasting palettes.
+          Added support for viewing additional sprite sheets.
+        </li>
+      </ul>
+      <h3><time>June 7, 2020</time></h3>
+      <ul>
+        <li>v2.7.0 (Hopefully) fixed a bug that caused checksum matching to fail. Added a new feature to improve accessibility,
+          <a name="customPalettesEditor" href="customPalettes/">an editor to create custom color palettes</a> for monsters in the tower.
+          This is especially helpful when using the option "Randomize enemy elements". For a thorough description of the tool,
+          open the <a name="customPalettesEditor" href="customPalettes/">custom palettes editor</a> and click "Help".
+        </li>
+      </ul>
+      <h3><time>June 4, 2020</time></h3>
+      <ul>
+        <li>v2.6.0-beta3 Fixed bugs with item and trap statuses. Added help page.
+        </li>
+        <li>v2.6.0-beta2 Waypoints can now be edited in custom floors. Fixed bugs in custom floor generation.
+        </li>
+      </ul>
+      <h3><time>June 3, 2020</time></h3>
+      <ul>
+        <li>v2.6.0-beta Custom floors are now supported enough for testing in game, as only waypoints are not editable via the GUI.
+          To test, go to the <a name="customFloorEditor" href="customFloor/">custom floor editor</a>, import a predefined floor JSON file
+          (links in #randomizer on the Discord), then make your changes. When you're done, click "Export file", return to this page,
+          then select that file as the custom floor file in the options before clicking Randomize.
+        </li>
+        <li>v2.6.0-preview7 Custom floor: added support for changing elevators, items, traps, and monsters, though the apply mode does not yet apply these.
+          Added packing routine as a proof of concept, but this does not integrate with the randomizer and thus only exports the floor itself.
+          Fixed some misnamed tiles which caused some maps to look incorrect.
+        </li>
+      </ul>
+      <h3><time>May 31, 2020</time></h3>
+      <ul>
+        <li>v2.6.0-preview6 New option for fixing minor bugs. Added a <a href="guide/bugs.html">page that catalogs all known bugs in the original game</a>.
+        </li>
+      </ul>
+      <h3><time>May 27, 2020</time></h3>
+      <ul>
+        <li>v2.6.0-preview5 CustomFloors: Made 'unk' value (seemingly relative height) show on doors.
+        </li>
+        <li>v2.6.0-preview4 CustomFloors: Made doors take precedence over room tiles, since they seem to actually be more like waypoints for monster AI
+          and can appear in the interior of rooms.
+        </li>
+      </ul>
+      <h3><time>May 25, 2020</time></h3>
+      <ul>
+        <li>v2.6.0-preview3 Added the site's icon, and added a fun <a href="404.html">404 page</a> (thanks to Sustainna for the image).
+        </li>
+        <li>v2.6.0-preview2 Added a few more view modes to the custom floor editor, hotkeys A/S for changing between Select and Apply modes,
+          support for turning random spawns on and off, and changed color scheme. Some behind the scenes fixes and improvements.
+        </li>
+        <li>v2.6.0-preview1 Added a <a name="customFloorEditor" href="customFloor/">custom floor editor</a>, which is a work in progress.
+          You can only edit tiles right now (not items, traps, elevators, or rooms), and the repacking utility needs to be re-written into JS
+          and added to the site. It is being released as a preview to gather feedback and gauge interest.
+        </li>
+      </ul>
+      <h3><time>May 17, 2020</time></h3>
+      <ul>
+        <li>v2.5.1 Directly modified floor layouts for fast tutorial floor and 2nd floor (when second tower enabled). As a result,
+          you'll now actually see the elevator on the first step when fast tutorial floor is enabled. When the second tower is enabled,
+          the elevator to the second tower will always be visible on the Ghosh/Selfi floor (before it would only appear if Ghosh appeared).
+        </li>
+      </ul>
+      <h3><time>May 10, 2020</time></h3>
+      <ul>
+        <li>v2.5.0 Added option to make trap selection closely match trap options selected. I strongly recommend using this whenever customizing
+          frequency because it makes things work as most people would expect. Selecting a trap spawn rate of max will now spawn more traps.
+          Fixed another bug around default starter and traps that prevented
+          saved preferences from being applied.
+        </li>
+        <li>v2.4.3 Fixed a bug that prevented Kewne from being the default starter and the default trap settings from being applied.</li>
+      </ul>
+      <h3><time>May 7, 2020</time></h3>
+      <ul>
+        <li>v2.4.2 Default options are now omitted from generated URLs.</li>
+        <li>v2.4.1 Portable elevators can now be directly triggered by selecting "Use" from the Items menu.</li>
+      </ul>
+      <h3><time>April 16, 2020</time></h3>
+      <ul>
+        <li>v2.4.0 Added <a href="gbc/">GBC de-randomizer</a>.</li>
+      </ul>
+    </div>
+    <div id="dev-border"></div>
+    <script src="constants.js"></script>
+    <script src="fields.js"></script>
+    <script src="util.js"></script>
+    <script src="traps.js"></script>
+    <script src="items.js"></script>
+    <script src="text.js"></script>
+    <script src="monsters.js"></script>
+    <script src="presets/safe.js"></script>
+    <script src="presets/secondTower.js"></script>
+    <script src="presets/secondTowerRun.js"></script>
+    <script src="presets/tournament.js"></script>
+    <script src="presets/starsTournament.js"></script>
+    <script src="presets/index.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
