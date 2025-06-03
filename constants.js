@@ -97,6 +97,7 @@
     salamParticleGraphic:  0x1cbc978, //RAM 0x800e03b0
     isExhaustedBattleText: 0x1cbcc3c,
     toUpstairsBattleText:  0x1cbe450, //RAM 0x800e1af8
+    enterTowerSetSeeds1:   0x1ea4220, //RAM 0x800164c8
     hardcodeKohProperty1:  0x1ea5094, //RAM 0x800170dc
     multiElevatorSpawns1:  0x1ea5b1c, //RAM 0x80017a34
     predefElevatorAppear1: 0x1ea68cf, //RAM 0x800186b7
@@ -111,6 +112,7 @@
     trapRollMaxPerFloor1:  0x1eae398, //RAM 0x8001f0e0
     setTrapsChooseType1:   0x1eae410, //RAM 0x8001f158
     trapRollLowestId1:     0x1eae420, //RAM 0x8001f168
+    enterTowerSetSeeds2:   0x217df70, //RAM 0x800164c8
     hardcodeKohProperty2:  0x217ede4, //RAM 0x800170dc
     multiElevatorSpawns2:  0x217f86c, //RAM 0x80017a34
     predefElevatorAppear2: 0x218061f, //RAM 0x800186b7

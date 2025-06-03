@@ -336,6 +336,18 @@
       data.writeInstruction(0x2180bdc+0x34,0x00000000)
       data.writeInstruction(0x2180bdc+0x38,0x00000000)
 
+      const enterTowerSetSeedsAddresses = [
+        constants.romAddresses.enterTowerSetSeeds1,
+        constants.romAddresses.enterTowerSetSeeds2
+      ]
+      enterTowerSetSeedsAddresses.forEach(function(address) {
+        //j $80019a54 (to set up RNG seed)
+        data.writeInstruction(address + 0x00, 0x95660008)
+        //replace rand() calls with rngRoll() calls
+        data.writeInstruction(address + 0x08, 0x4c9b020c)
+        data.writeInstruction(address + 0x14, 0x4c9b020c)
+      })
+
       const addresses = [
         {start: constants.romAddresses.checkIfTower2Availbl1,},
         {start: constants.romAddresses.checkIfTower2Availbl2,}
@@ -377,7 +389,19 @@
                   {data: 0x23280500, toSeed: false,},
                   {data: 0x0420a400, toSeed: false,},
                   {data: 0x0800e003, toSeed: false,},
-                  {data: 0x25208200, toSeed: false,}]
+                  {data: 0x25208200, toSeed: false,},
+                  //code called from 0x800164c8 (via j, not jal)
+                  //jal $800199c8 (set up RNG seed)
+                  {data: 0x7266000c, toSeed: false,},
+                  {data: 0x00000000, toSeed: false,},
+                  //jal $800A6D30 (call rngRoll())
+                  {data: 0x4c9b020c, toSeed: false,},
+                  {data: 0x00000000, toSeed: false,},
+                  {data: 0x00000000, toSeed: false,},
+                  {data: 0x00000000, toSeed: false,},
+                  //j $800164d0 (go back to caller)
+                  {data: 0x34590008, toSeed: false,},
+                  {data: 0x00000000, toSeed: false,},]
 
       addresses.forEach(function(address) {
         let a = 0
