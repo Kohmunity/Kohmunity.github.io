@@ -428,6 +428,7 @@
       //data.writeInstruction(0x43a920, 0x01000224)
     //}
     applyAnimations(options, data, hex)
+    applyDisableObfuscation(options, data)
   }
 
   function applyTutorialSkip(options, data) {
@@ -1106,6 +1107,12 @@
       data.writeShort(0x388baa0, width) //??, ??
       data.writeShort(0x3891814, width) //??, ??
 
+    }
+  }
+
+  function applyDisableObfuscation(options, data) {
+    if (options.disableObfuscation) {
+      data.writeInstruction(0x1c5dcc0, 0x0)
     }
   }
 

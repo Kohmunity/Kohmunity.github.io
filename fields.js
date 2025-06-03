@@ -271,6 +271,8 @@
    const animationsTooltip = 'Randomize monster appearances and animations by type. This option is highly experimental, ' +
    'will result in some bizarre looking effects, and may even crash your emulator. The randomization process will also take much longer to complete.';
 
+   const disableObfuscationTooltip = 'Disables items obfuscation when entering 2nd tower. Eggs obfuscation remains intact.';
+
   const kohElementOptions =
   {
     Randomized: -1,
@@ -322,6 +324,7 @@
     newBalls:             new CheckOption('newBalls',             'new-balls',                'w', null, false, newBallsTooltip),
     fixCrashes:           new CheckOption('fixCrashes',           'fix-crashes',              'x', null, false, fixCrashesTooltip),
     fixBugs:              new CheckOption('fixBugs',              'fix-bugs',                 'X', null, false, fixBugsTooltip),
+    disableObfuscation:   new CheckOption('disableObfuscation',   'disable-obfuscation',     'y', null, false, disableObfuscationTooltip),
   }
 
   function get(properName) {
