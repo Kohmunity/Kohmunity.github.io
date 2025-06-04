@@ -273,6 +273,8 @@
 
    const disableObfuscationTooltip = 'Disables items obfuscation when entering 2nd tower. Eggs obfuscation remains intact.';
 
+   const randomStoreTooltip = 'Fur\'s store will sell 15 random items.';
+ 
   const kohElementOptions =
   {
     Randomized: -1,
@@ -324,7 +326,8 @@
     newBalls:             new CheckOption('newBalls',             'new-balls',                'w', null, false, newBallsTooltip),
     fixCrashes:           new CheckOption('fixCrashes',           'fix-crashes',              'x', null, false, fixCrashesTooltip),
     fixBugs:              new CheckOption('fixBugs',              'fix-bugs',                 'X', null, false, fixBugsTooltip),
-    disableObfuscation:   new CheckOption('disableObfuscation',   'disable-obfuscation',     'y', null, false, disableObfuscationTooltip),
+    disableObfuscation:   new CheckOption('disableObfuscation',   'disable-obfuscation',      'y', null, false, disableObfuscationTooltip),
+    randomStore:          new CheckOption('randomStore',          'random-store',             'O', null, false, randomStoreTooltip)
   }
 
   function get(properName) {

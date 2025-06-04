@@ -736,6 +736,7 @@
     //also applies several other options due to difficulties when calling from here
     monsters.setEnemizer(applied, check, hex)
     adRando.items.setStartingItems(applied, check, hex)
+    adRando.items.applyRandomStore(applied, check, hex)
     util.setAppliedOptions(applied, check, hex)
 
     const checksum = check.sum()

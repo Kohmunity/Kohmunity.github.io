@@ -11,6 +11,7 @@
 
   const startingItemWidth = 6
   const randomItemHexSeed = 5
+  const randomStoreHexSeed = 2
 
   const TYPE = constants.TYPE
 
@@ -25,183 +26,183 @@
 
   const items = [
     //Herb
-    { name: 'Medicinal',    type: TYPE.HERB, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e8ac, barong: false}, //hospital version
-    { name: 'Antidote',     type: TYPE.HERB, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e8c0, barong: false},
-    { name: 'Antichaos',    type: TYPE.HERB, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e8d4, barong: false},
-    { name: 'Wake-Up',      type: TYPE.HERB, id: 0x04, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e8e8, barong: false},
-    { name: 'Cure-All',     type: TYPE.HERB, id: 0x05, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e8fc, barong: false},
-    { name: 'Harak',        type: TYPE.HERB, id: 0x06, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e910, barong: false},
-    { name: 'Shomuro',      type: TYPE.HERB, id: 0x07, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e924, barong: true},
-    { name: 'Healing Herb', type: TYPE.HERB, id: 0x08, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e938, barong: false},
-    { name: 'Poison',       type: TYPE.HERB, id: 0x09, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e94c, barong: true},
-    { name: 'Paralyze',     type: TYPE.HERB, id: 0x0a, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e960, barong: true},
-    { name: 'Harash',       type: TYPE.HERB, id: 0x0b, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e974, barong: true},
-    { name: 'Horrey',       type: TYPE.HERB, id: 0x0c, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e988, barong: true},
-    { name: 'Sleep',        type: TYPE.HERB, id: 0x0d, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e99c, barong: true},
-    { name: 'Roehm',        type: TYPE.HERB, id: 0x0e, modifiers: 0x00, inPool: false, survival: 1, address: 0x5e9b0, barong: false},
-    { name: 'Medicinal',    type: TYPE.HERB, id: 0x0f, modifiers: 0x00, inPool: true,  survival: 1, address: 0x5e9c4, barong: false},
+    { name: 'Medicinal',    type: TYPE.HERB, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5e8ac, barong: false}, //hospital version
+    { name: 'Antidote',     type: TYPE.HERB, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5e8c0, barong: false},
+    { name: 'Antichaos',    type: TYPE.HERB, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5e8d4, barong: false},
+    { name: 'Wake-Up',      type: TYPE.HERB, id: 0x04, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5e8e8, barong: false},
+    { name: 'Cure-All',     type: TYPE.HERB, id: 0x05, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5e8fc, barong: false},
+    { name: 'Hazak',        type: TYPE.HERB, id: 0x06, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5e910, barong: false},
+    { name: 'Shomuro',      type: TYPE.HERB, id: 0x07, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5e924, barong: true},
+    { name: 'Healing Herb', type: TYPE.HERB, id: 0x08, modifiers: 0x00, inPool: false, survival: 1, storeRank: 0, address: 0x5e938, barong: false},
+    { name: 'Poison',       type: TYPE.HERB, id: 0x09, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5e94c, barong: true},
+    { name: 'Paralyze',     type: TYPE.HERB, id: 0x0a, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5e960, barong: true},
+    { name: 'Harash',       type: TYPE.HERB, id: 0x0b, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5e974, barong: true},
+    { name: 'Horrey',       type: TYPE.HERB, id: 0x0c, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5e988, barong: true},
+    { name: 'Sleep',        type: TYPE.HERB, id: 0x0d, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5e99c, barong: true},
+    { name: 'Roehm',        type: TYPE.HERB, id: 0x0e, modifiers: 0x00, inPool: false, survival: 1, storeRank: 0, address: 0x5e9b0, barong: false},
+    { name: 'Medicinal',    type: TYPE.HERB, id: 0x0f, modifiers: 0x00, inPool: true,  survival: 1, storeRank: 0, address: 0x5e9c4, barong: false},
     //Fruit
-    { name: 'Pita',         type: TYPE.FRUIT, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, address: 0x5e9ec}, //+3
-    { name: 'Big Pita',     type: TYPE.FRUIT, id: 0x02, modifiers: 0x00, inPool: false, survival: 2, address: 0x5ea00},
-    { name: 'Tumna',        type: TYPE.FRUIT, id: 0x03, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ea14},
-    { name: 'Leva',         type: TYPE.FRUIT, id: 0x04, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ea28},
-    { name: 'Leolam',       type: TYPE.FRUIT, id: 0x05, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ea3c},
-    { name: 'Laev',         type: TYPE.FRUIT, id: 0x06, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ea50},
-    { name: 'Roche',        type: TYPE.FRUIT, id: 0x07, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ea64},
-    { name: 'Limit',        type: TYPE.FRUIT, id: 0x08, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ea78},
-    { name: 'Oleem',        type: TYPE.FRUIT, id: 0x09, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ea8c},
-    { name: 'Geropita',     type: TYPE.FRUIT, id: 0x0a, modifiers: 0x00, inPool: false, survival: 1, address: 0x5eaa0},
+    { name: 'Pita',         type: TYPE.FRUIT, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5e9ec}, //+3
+    { name: 'Big Pita',     type: TYPE.FRUIT, id: 0x02, modifiers: 0x00, inPool: false, survival: 2, storeRank: 1, address: 0x5ea00},
+    { name: 'Tumna',        type: TYPE.FRUIT, id: 0x03, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ea14},
+    { name: 'Leva',         type: TYPE.FRUIT, id: 0x04, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5ea28},
+    { name: 'Leolam',       type: TYPE.FRUIT, id: 0x05, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ea3c},
+    { name: 'Laev',         type: TYPE.FRUIT, id: 0x06, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5ea50},
+    { name: 'Roche',        type: TYPE.FRUIT, id: 0x07, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ea64},
+    { name: 'Limit',        type: TYPE.FRUIT, id: 0x08, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ea78},
+    { name: 'Oleem',        type: TYPE.FRUIT, id: 0x09, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5ea8c},
+    { name: 'Geropita',     type: TYPE.FRUIT, id: 0x0a, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5eaa0},
     //Seed
-    { name: 'Hazak',        type: TYPE.SEED, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, address: 0x5eac8}, //+5
-    { name: 'Shomuro',      type: TYPE.SEED, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ec0c},
-    { name: 'Mazarr',       type: TYPE.SEED, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ec20},
-    { name: 'Mahell',       type: TYPE.SEED, id: 0x04, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ec34},
-    { name: 'Light',        type: TYPE.SEED, id: 0x05, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ec48},
-    { name: 'Sea',          type: TYPE.SEED, id: 0x06, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ec5c},
-    { name: 'Wind',         type: TYPE.SEED, id: 0x07, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ec70},
-    { name: 'Lar',          type: TYPE.SEED, id: 0x08, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ec84},
-    { name: 'Slow',         type: TYPE.SEED, id: 0x09, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ec98},
-    { name: 'Tovar',        type: TYPE.SEED, id: 0x0a, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ecac},
+    { name: 'Hazak',        type: TYPE.SEED, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5eac8}, //+5
+    { name: 'Shomuro',      type: TYPE.SEED, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5ec0c},
+    { name: 'Mazarr',       type: TYPE.SEED, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5ec20},
+    { name: 'Mahell',       type: TYPE.SEED, id: 0x04, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ec34},
+    { name: 'Light',        type: TYPE.SEED, id: 0x05, modifiers: 0x00, inPool: false, survival: 1, storeRank: 2, address: 0x5ec48},
+    { name: 'Sea',          type: TYPE.SEED, id: 0x06, modifiers: 0x00, inPool: false, survival: 1, storeRank: 2, address: 0x5ec5c},
+    { name: 'Wind',         type: TYPE.SEED, id: 0x07, modifiers: 0x00, inPool: false, survival: 1, storeRank: 2, address: 0x5ec70},
+    { name: 'Lar',          type: TYPE.SEED, id: 0x08, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5ec84},
+    { name: 'Slow',         type: TYPE.SEED, id: 0x09, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ec98},
+    { name: 'Tovar',        type: TYPE.SEED, id: 0x0a, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5ecac},
     //Ball
-    { name: 'Fire',       type: TYPE.BALL, id: 0x01, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ecd4, spellId: 0x01, names: [0, 0x8002E3E8, 0, 0x8002E39C],          descriptions: [0, 0x8002E3B0, 0, 0x8002E364],},
-    { name: 'Blaze',      type: TYPE.BALL, id: 0x02, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ece8, spellId: 0x04, names: [0, 0x8002E314, 0, 0x8002E2D0],          descriptions: [0, 0x8002E2E0, 0, 0x8002E2A0],},
-    { name: 'Flame',      type: TYPE.BALL, id: 0x03, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ecfc, spellId: 0x07, names: [0, 0x8002E264, 0, 0x8002E218],          descriptions: [0, 0x8002E228, 0, 0x8002E1E0],},
-    { name: 'Pillar',     type: TYPE.BALL, id: 0x04, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed10, spellId: 0x0a, names: [0, 0x8002E184, 0, 0x8002E138],          descriptions: [0, 0x8002E148, 0, 0x8002E10C],},
-    { name: 'Poison',     type: TYPE.BALL, id: 0x05, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed24, spellId: 0x0d, names: [0, 0x8002E0B8, 0, 0x8002E078],          descriptions: [0, 0x8002E08C, 0, 0x8002E048],},
-    { name: 'Water',      type: TYPE.BALL, id: 0x06, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed38, spellId: 0x11, names: [0x8002E038, 0, 0, 0x8002DF6C],          descriptions: [0x8002DFFC, 0, 0, 0x8002DF2C],},
-    { name: 'Repel',      type: TYPE.BALL, id: 0x07, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed4c, spellId: 0x14, names: [0x8002DEFC, 0, 0, 0x8002DE64],          descriptions: [0x8002DEC4, 0, 0, 0x8002DE2C],},
-    { name: 'Ice Rock',   type: TYPE.BALL, id: 0x08, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed60, spellId: 0x17, names: [0x8002DE1C, 0, 0, 0x8002DD58],          descriptions: [0x8002DDE0, 0, 0, 0x8002DD20],},
-    { name: 'Recovery',   type: TYPE.BALL, id: 0x09, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed74, spellId: 0x1a, names: [0x8002DCF8, 0, 0, 0x8002DC6C],          descriptions: [0x8002DCBC, 0, 0, 0x8002DC34],},
-    { name: 'DeForth',    type: TYPE.BALL, id: 0x0A, modifiers: 0x05, inPool: false, survival: 0, address: 0x5ed88, spellId: 0x1d, names: [0x8002DC20, 0x8002DBD8, 0, 0x8002DB84], descriptions: [0x8002DBE8, 0x8002DB98, 0, 0x8002DB4C],},
-    { name: 'Blinder',    type: TYPE.BALL, id: 0x0B, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5ed9c, spellId: 0x21, names: [0x8002DB3C, 0x8002DAF4, 0, 0],          descriptions: [0x8002DB04, 0x8002DAB8, 0, 0],},
-    { name: 'Binding',    type: TYPE.BALL, id: 0x0C, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5edb0, spellId: 0x24, names: [0x8002DA60, 0x8002DA10, 0, 0],          descriptions: [0x8002DA20, 0x8002D9D0, 0, 0],},
-    { name: 'Sleep',      type: TYPE.BALL, id: 0x0D, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5edc4, spellId: 0x27, names: [0x8002D974, 0x8002D930, 0, 0],          descriptions: [0x8002D940, 0x8002D8FC, 0, 0],},
-    { name: 'Weak',       type: TYPE.BALL, id: 0x0E, modifiers: 0x05, inPool: true,  survival: 1, address: 0x5edd8, spellId: 0x2a, names: [0x8002D8A8, 0x8002D864, 0, 0],          descriptions: [0x8002D874, 0x8002D820, 0, 0],},
-    { name: 'LoGrave',    type: TYPE.BALL, id: 0x0F, modifiers: 0x05, inPool: false, survival: 0, address: 0x5edec, spellId: 0x2d, names: [0x8002D7C0, 0x8002D770, 0, 0x8002D730], descriptions: [0x8002D784, 0x8002D740, 0, 0x8002D6FC],},
-    { name: 'LeoGrave',   type: TYPE.BALL, id: 0x10, modifiers: 0x05, inPool: false, survival: 0, address: 0x5ee00, spellId: 0x2c, names: [0x8002D7C0, 0x8002D770, 0, 0x8002D730], descriptions: [0x8002D784, 0x8002D740, 0, 0x8002D6FC],},
-    { name: 'Acid Rain',  type: TYPE.BALL, id: 0x11, modifiers: 0x01, inPool: true,  survival: 1, address: 0x5ee14, spellId: 0x31, names: [0, 0, 0, 0],                            descriptions: [0, 0, 0, 0]},
+    { name: 'Fire',       type: TYPE.BALL, id: 0x01, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5ecd4, spellId: 0x01, names: [0, 0x8002E3E8, 0, 0x8002E39C],          descriptions: [0, 0x8002E3B0, 0, 0x8002E364],},
+    { name: 'Blaze',      type: TYPE.BALL, id: 0x02, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5ece8, spellId: 0x04, names: [0, 0x8002E314, 0, 0x8002E2D0],          descriptions: [0, 0x8002E2E0, 0, 0x8002E2A0],},
+    { name: 'Flame',      type: TYPE.BALL, id: 0x03, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5ecfc, spellId: 0x07, names: [0, 0x8002E264, 0, 0x8002E218],          descriptions: [0, 0x8002E228, 0, 0x8002E1E0],},
+    { name: 'Pillar',     type: TYPE.BALL, id: 0x04, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5ed10, spellId: 0x0a, names: [0, 0x8002E184, 0, 0x8002E138],          descriptions: [0, 0x8002E148, 0, 0x8002E10C],},
+    { name: 'Poison',     type: TYPE.BALL, id: 0x05, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 1, address: 0x5ed24, spellId: 0x0d, names: [0, 0x8002E0B8, 0, 0x8002E078],          descriptions: [0, 0x8002E08C, 0, 0x8002E048],},
+    { name: 'Water',      type: TYPE.BALL, id: 0x06, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 1, address: 0x5ed38, spellId: 0x11, names: [0x8002E038, 0, 0, 0x8002DF6C],          descriptions: [0x8002DFFC, 0, 0, 0x8002DF2C],},
+    { name: 'Repel',      type: TYPE.BALL, id: 0x07, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 0, address: 0x5ed4c, spellId: 0x14, names: [0x8002DEFC, 0, 0, 0x8002DE64],          descriptions: [0x8002DEC4, 0, 0, 0x8002DE2C],},
+    { name: 'Ice Rock',   type: TYPE.BALL, id: 0x08, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 1, address: 0x5ed60, spellId: 0x17, names: [0x8002DE1C, 0, 0, 0x8002DD58],          descriptions: [0x8002DDE0, 0, 0, 0x8002DD20],},
+    { name: 'Recovery',   type: TYPE.BALL, id: 0x09, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 1, address: 0x5ed74, spellId: 0x1a, names: [0x8002DCF8, 0, 0, 0x8002DC6C],          descriptions: [0x8002DCBC, 0, 0, 0x8002DC34],},
+    { name: 'DeForth',    type: TYPE.BALL, id: 0x0A, modifiers: 0x05, inPool: false, survival: 0, storeRank: 0, address: 0x5ed88, spellId: 0x1d, names: [0x8002DC20, 0x8002DBD8, 0, 0x8002DB84], descriptions: [0x8002DBE8, 0x8002DB98, 0, 0x8002DB4C],},
+    { name: 'Blinder',    type: TYPE.BALL, id: 0x0B, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5ed9c, spellId: 0x21, names: [0x8002DB3C, 0x8002DAF4, 0, 0],          descriptions: [0x8002DB04, 0x8002DAB8, 0, 0],},
+    { name: 'Binding',    type: TYPE.BALL, id: 0x0C, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5edb0, spellId: 0x24, names: [0x8002DA60, 0x8002DA10, 0, 0],          descriptions: [0x8002DA20, 0x8002D9D0, 0, 0],},
+    { name: 'Sleep',      type: TYPE.BALL, id: 0x0D, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 2, address: 0x5edc4, spellId: 0x27, names: [0x8002D974, 0x8002D930, 0, 0],          descriptions: [0x8002D940, 0x8002D8FC, 0, 0],},
+    { name: 'Weak',       type: TYPE.BALL, id: 0x0E, modifiers: 0x05, inPool: true,  survival: 1, storeRank: 0, address: 0x5edd8, spellId: 0x2a, names: [0x8002D8A8, 0x8002D864, 0, 0],          descriptions: [0x8002D874, 0x8002D820, 0, 0],},
+    { name: 'LoGrave',    type: TYPE.BALL, id: 0x0F, modifiers: 0x05, inPool: false, survival: 0, storeRank: 0, address: 0x5edec, spellId: 0x2d, names: [0x8002D7C0, 0x8002D770, 0, 0x8002D730], descriptions: [0x8002D784, 0x8002D740, 0, 0x8002D6FC],},
+    { name: 'LeoGrave',   type: TYPE.BALL, id: 0x10, modifiers: 0x05, inPool: false, survival: 0, storeRank: 0, address: 0x5ee00, spellId: 0x2c, names: [0x8002D7C0, 0x8002D770, 0, 0x8002D730], descriptions: [0x8002D784, 0x8002D740, 0, 0x8002D6FC],},
+    { name: 'Acid Rain',  type: TYPE.BALL, id: 0x11, modifiers: 0x01, inPool: true,  survival: 1, storeRank: 1, address: 0x5ee14, spellId: 0x31, names: [0, 0, 0, 0],                            descriptions: [0, 0, 0, 0]},
     //Scroll
-    { name: 'Holy',       type: TYPE.SCROLL, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ee3c}, //+4
-    { name: 'Malicious',  type: TYPE.SCROLL, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ee50},
-    { name: 'Trap',       type: TYPE.SCROLL, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ee64},
-    { name: 'Restore',    type: TYPE.SCROLL, id: 0x04, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ee78},
-    { name: 'De-curse',   type: TYPE.SCROLL, id: 0x05, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ee8c},
-    { name: 'Flat',       type: TYPE.SCROLL, id: 0x06, modifiers: 0x00, inPool: false, survival: 1, address: 0x5eea0},
-    { name: 'Alchemic',   type: TYPE.SCROLL, id: 0x07, modifiers: 0x00, inPool: false, survival: 0, address: 0x5eeb4},
+    { name: 'Holy',       type: TYPE.SCROLL, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ee3c}, //+4
+    { name: 'Malicious',  type: TYPE.SCROLL, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ee50},
+    { name: 'Trap',       type: TYPE.SCROLL, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5ee64},
+    { name: 'Restore',    type: TYPE.SCROLL, id: 0x04, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ee78},
+    { name: 'De-curse',   type: TYPE.SCROLL, id: 0x05, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5ee8c},
+    { name: 'Flat',       type: TYPE.SCROLL, id: 0x06, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5eea0},
+    { name: 'Alchemic',   type: TYPE.SCROLL, id: 0x07, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5eeb4},
     //Crystal
-    { name: 'Fire',   type: TYPE.CRYSTAL, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, address: 0x5dbd8}, //+1
-    { name: 'Water',  type: TYPE.CRYSTAL, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, address: 0x5dbec},
-    { name: 'Wind',   type: TYPE.CRYSTAL, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, address: 0x5dc00},
+    { name: 'Fire',   type: TYPE.CRYSTAL, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5dbd8}, //+1
+    { name: 'Water',  type: TYPE.CRYSTAL, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5dbec},
+    { name: 'Wind',   type: TYPE.CRYSTAL, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5dc00},
     //Bell
-    { name: 'Holy',       type: TYPE.BELL, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, address: 0x5eedc}, //+1
-    { name: 'Malicious',  type: TYPE.BELL, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, address: 0x5eef0},
-    { name: 'Familiar',   type: TYPE.BELL, id: 0x03, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ef04},
+    { name: 'Holy',       type: TYPE.BELL, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5eedc}, //+1
+    { name: 'Malicious',  type: TYPE.BELL, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5eef0},
+    { name: 'Familiar',   type: TYPE.BELL, id: 0x03, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ef04},
     //Glasses
-    { name: 'Truth',      type: TYPE.GLASSES, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ef2c}, //+1
-    { name: 'Star',       type: TYPE.GLASSES, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ef40},
+    { name: 'Truth',      type: TYPE.GLASSES, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5ef2c}, //+1
+    { name: 'Star',       type: TYPE.GLASSES, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ef40},
     //Loupe
-    { name: 'Exit',       type: TYPE.LOUPE, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ef68}, //-1
-    { name: 'Trap',       type: TYPE.LOUPE, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, address: 0x5ef7c},
-    { name: 'Focus',      type: TYPE.LOUPE, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, address: 0x5ef90},
-    { name: 'Monster',    type: TYPE.LOUPE, id: 0x04, modifiers: 0x00, inPool: false, survival: 1, address: 0x5efa4},
-    { name: 'Treasure',   type: TYPE.LOUPE, id: 0x05, modifiers: 0x00, inPool: false, survival: 0, address: 0x5efb8},
+    { name: 'Exit',       type: TYPE.LOUPE, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ef68}, //-1
+    { name: 'Trap',       type: TYPE.LOUPE, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5ef7c},
+    { name: 'Focus',      type: TYPE.LOUPE, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5ef90},
+    { name: 'Monster',    type: TYPE.LOUPE, id: 0x04, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5efa4},
+    { name: 'Treasure',   type: TYPE.LOUPE, id: 0x05, modifiers: 0x00, inPool: false, survival: 0, storeRank: 1, address: 0x5efb8},
     //Sand
-    { name: 'Red',        type: TYPE.SAND, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, address: 0x5efe0}, //0
-    { name: 'Blue',       type: TYPE.SAND, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, address: 0x5eff4},
-    { name: 'White',      type: TYPE.SAND, id: 0x03, modifiers: 0x00, inPool: false, survival: 1, address: 0x5f008},
+    { name: 'Red',        type: TYPE.SAND, id: 0x01, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5efe0}, //0
+    { name: 'Blue',       type: TYPE.SAND, id: 0x02, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5eff4},
+    { name: 'White',      type: TYPE.SAND, id: 0x03, modifiers: 0x00, inPool: false, survival: 1, storeRank: 1, address: 0x5f008},
     //Special
-    { name: 'Blue Collar',    type: TYPE.SPECIAL, id: 0x04, modifiers: 0x00, inPool: false, survival: 0, address: 0x5dc64}, //-3
-    { name: '?',              type: TYPE.SPECIAL, id: 0x08, modifiers: 0x00, inPool: false, survival: 0, address: 0x5dcb4}, 
-    { name: 'Oleem',          type: TYPE.SPECIAL, id: 0x09, modifiers: 0x00, inPool: false, survival: 2, address: 0x5dcc8},
+    { name: 'Blue Collar',    type: TYPE.SPECIAL, id: 0x04, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5dc64}, //-3
+    { name: '?',              type: TYPE.SPECIAL, id: 0x08, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5dcb4}, 
+    { name: 'Oleem',          type: TYPE.SPECIAL, id: 0x09, modifiers: 0x00, inPool: false, survival: 2, storeRank: 1, address: 0x5dcc8},
     //Coin
-    { name: 'Copper',         type: TYPE.COIN, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, address: 0x5de08}, //0
-    { name: 'Silver',         type: TYPE.COIN, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, address: 0x5de1c}, 
-    { name: 'Gold',           type: TYPE.COIN, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, address: 0x5de30}, 
+    { name: 'Copper',         type: TYPE.COIN, id: 0x01, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5de08}, //0
+    { name: 'Silver',         type: TYPE.COIN, id: 0x02, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5de1c}, 
+    { name: 'Gold',           type: TYPE.COIN, id: 0x03, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5de30}, 
     //Sword
-    { name: 'Gold Sword',     type: TYPE.SWORD, id: 0x01, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5de58,}, //-1
-    { name: 'Copper Sword',   type: TYPE.SWORD, id: 0x02, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5de6c,},
-    { name: 'Iron Sword',     type: TYPE.SWORD, id: 0x03, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5de80,},
-    { name: 'Steel Sword',    type: TYPE.SWORD, id: 0x04, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5de94,},
-    { name: 'Fire Sword',     type: TYPE.SWORD, id: 0x05, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5dea8,},
-    { name: 'Blizzard Sword', type: TYPE.SWORD, id: 0x06, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5debc,},
-    { name: 'Gulfwind Sword', type: TYPE.SWORD, id: 0x07, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5ded0,},
-    { name: 'Vital Sword',    type: TYPE.SWORD, id: 0x08, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5dee4,},
-    { name: 'Dark Sword',     type: TYPE.SWORD, id: 0x09, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5def8,},
-    { name: 'Holy Sword',     type: TYPE.SWORD, id: 0x0A, modifiers: 0x00, inPool: true,  survival: 0, address: 0x5df0c,},
-    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0B, modifiers: 0x00, inPool: false, survival: 0, address: 0x5df20,}, //cutscene version
-    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0C, modifiers: 0x00, inPool: true,  survival: 1, address: 0x5df34,},
-    { name: 'Troll Sword',    type: TYPE.SWORD, id: 0x0D, modifiers: 0x00, inPool: false, survival: 0, address: 0x5df48,},
-    { name: 'Hammer',         type: TYPE.SWORD, id: 0x0E, modifiers: 0x00, inPool: false, survival: 0, address: 0x5df5c,},
-    { name: 'Bow Gun',        type: TYPE.SWORD, id: 0x0F, modifiers: 0x00, inPool: false, survival: 0, address: 0x5df70,},
+    { name: 'Gold Sword',     type: TYPE.SWORD, id: 0x01, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 0, address: 0x5de58,}, //-1
+    { name: 'Copper Sword',   type: TYPE.SWORD, id: 0x02, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 0, address: 0x5de6c,},
+    { name: 'Iron Sword',     type: TYPE.SWORD, id: 0x03, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5de80,},
+    { name: 'Steel Sword',    type: TYPE.SWORD, id: 0x04, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5de94,},
+    { name: 'Fire Sword',     type: TYPE.SWORD, id: 0x05, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5dea8,},
+    { name: 'Blizzard Sword', type: TYPE.SWORD, id: 0x06, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5debc,},
+    { name: 'Gulfwind Sword', type: TYPE.SWORD, id: 0x07, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5ded0,},
+    { name: 'Vital Sword',    type: TYPE.SWORD, id: 0x08, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5dee4,},
+    { name: 'Dark Sword',     type: TYPE.SWORD, id: 0x09, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 2, address: 0x5def8,},
+    { name: 'Holy Sword',     type: TYPE.SWORD, id: 0x0A, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 2, address: 0x5df0c,},
+    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0B, modifiers: 0x00, inPool: false, survival: 0, storeRank: 2, address: 0x5df20,}, //cutscene version
+    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0C, modifiers: 0x00, inPool: true,  survival: 1, storeRank: 0, address: 0x5df34,},
+    { name: 'Troll Sword',    type: TYPE.SWORD, id: 0x0D, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df48,},
+    { name: 'Hammer',         type: TYPE.SWORD, id: 0x0E, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df5c,},
+    { name: 'Bow Gun',        type: TYPE.SWORD, id: 0x0F, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df70,},
     //Wand
-    { name: 'Wooden Wand',    type: TYPE.WAND, id: 0x01, modifiers: 0x00, inPool: true, survival: 0, address: 0x5df98,}, //-5
-    { name: 'Trained Wand',   type: TYPE.WAND, id: 0x02, modifiers: 0x00, inPool: true, survival: 1, address: 0x5dfac,},
-    { name: 'Life Wand',      type: TYPE.WAND, id: 0x03, modifiers: 0x00, inPool: true, survival: 1, address: 0x5dfc0,},
-    { name: 'Paralyze Wand',  type: TYPE.WAND, id: 0x04, modifiers: 0x00, inPool: true, survival: 1, address: 0x5dfd4,},
-    { name: 'Money Wand',     type: TYPE.WAND, id: 0x05, modifiers: 0x00, inPool: true, survival: 0, address: 0x5dfe8,},
-    { name: 'Scarlet Wand',   type: TYPE.WAND, id: 0x06, modifiers: 0x00, inPool: true, survival: 1, address: 0x5dffc,},
-    { name: 'Stream Wand',    type: TYPE.WAND, id: 0x07, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e010,},
-    { name: 'Gulf Wand',      type: TYPE.WAND, id: 0x08, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e024,},
-    { name: 'Seal Wand',      type: TYPE.WAND, id: 0x09, modifiers: 0x00, inPool: true, survival: 0, address: 0x5e038,},
+    { name: 'Wooden Wand',    type: TYPE.WAND, id: 0x01, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5df98,}, //-5
+    { name: 'Trained Wand',   type: TYPE.WAND, id: 0x02, modifiers: 0x00, inPool: true, survival: 1, storeRank: 1, address: 0x5dfac,},
+    { name: 'Life Wand',      type: TYPE.WAND, id: 0x03, modifiers: 0x00, inPool: true, survival: 1, storeRank: 1, address: 0x5dfc0,},
+    { name: 'Paralyze Wand',  type: TYPE.WAND, id: 0x04, modifiers: 0x00, inPool: true, survival: 1, storeRank: 1, address: 0x5dfd4,},
+    { name: 'Money Wand',     type: TYPE.WAND, id: 0x05, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5dfe8,},
+    { name: 'Scarlet Wand',   type: TYPE.WAND, id: 0x06, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5dffc,},
+    { name: 'Stream Wand',    type: TYPE.WAND, id: 0x07, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e010,},
+    { name: 'Gulf Wand',      type: TYPE.WAND, id: 0x08, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e024,},
+    { name: 'Seal Wand',      type: TYPE.WAND, id: 0x09, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5e038,},
     //Shield
-    { name: 'Wooden Shield',  type: TYPE.SHIELD, id: 0x01, modifiers: 0x00, inPool: true, survival: 0, address: 0x5e060,}, //-5
-    { name: 'Leather Shield', type: TYPE.SHIELD, id: 0x02, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e074,},
-    { name: 'Mirror Shield',  type: TYPE.SHIELD, id: 0x03, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e088,},
-    { name: 'Copper Shield',  type: TYPE.SHIELD, id: 0x04, modifiers: 0x00, inPool: true, survival: 0, address: 0x5e09c,},
-    { name: 'Iron Shield',    type: TYPE.SHIELD, id: 0x05, modifiers: 0x00, inPool: true, survival: 0, address: 0x5e0b0,},
-    { name: 'Steel Shield',   type: TYPE.SHIELD, id: 0x06, modifiers: 0x00, inPool: true, survival: 0, address: 0x5e0c4,},
-    { name: 'Diamond Shield', type: TYPE.SHIELD, id: 0x07, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e0d8,},
-    { name: 'Scorch Shield',  type: TYPE.SHIELD, id: 0x08, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e0ec,},
-    { name: 'Ice Shield',     type: TYPE.SHIELD, id: 0x09, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e100,},
-    { name: 'Earth Shield',   type: TYPE.SHIELD, id: 0x0A, modifiers: 0x00, inPool: true, survival: 1, address: 0x5e114,},
-    { name: 'Live Shield',    type: TYPE.SHIELD, id: 0x0B, modifiers: 0x00, inPool: true, survival: 0, address: 0x5e128,},
+    { name: 'Wooden Shield',  type: TYPE.SHIELD, id: 0x01, modifiers: 0x00, inPool: true, survival: 0, storeRank: 0, address: 0x5e060,}, //-5
+    { name: 'Leather Shield', type: TYPE.SHIELD, id: 0x02, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e074,},
+    { name: 'Mirror Shield',  type: TYPE.SHIELD, id: 0x03, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e088,},
+    { name: 'Copper Shield',  type: TYPE.SHIELD, id: 0x04, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5e09c,},
+    { name: 'Iron Shield',    type: TYPE.SHIELD, id: 0x05, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5e0b0,},
+    { name: 'Steel Shield',   type: TYPE.SHIELD, id: 0x06, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5e0c4,},
+    { name: 'Diamond Shield', type: TYPE.SHIELD, id: 0x07, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e0d8,},
+    { name: 'Scorch Shield',  type: TYPE.SHIELD, id: 0x08, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e0ec,},
+    { name: 'Ice Shield',     type: TYPE.SHIELD, id: 0x09, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e100,},
+    { name: 'Earth Shield',   type: TYPE.SHIELD, id: 0x0A, modifiers: 0x00, inPool: true, survival: 1, storeRank: 2, address: 0x5e114,},
+    { name: 'Live Shield',    type: TYPE.SHIELD, id: 0x0B, modifiers: 0x00, inPool: true, survival: 0, storeRank: 1, address: 0x5e128,},
     //Egg
-    { name: 'Ultimate Egg', type: TYPE.EGG, id: 0x01, modifiers: 0x14, inPool: false, survival: 0,},
-    { name: 'Kewne Egg',    type: TYPE.EGG, id: 0x02, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Dragon Egg',   type: TYPE.EGG, id: 0x03, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Kid Egg',      type: TYPE.EGG, id: 0x04, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Ifrit Egg',    type: TYPE.EGG, id: 0x05, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Flame Egg',    type: TYPE.EGG, id: 0x06, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Grineut Egg',  type: TYPE.EGG, id: 0x07, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Griffon Egg',  type: TYPE.EGG, id: 0x08, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Saber Egg',    type: TYPE.EGG, id: 0x09, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Snowman Egg',  type: TYPE.EGG, id: 0x0A, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Ashra Egg',    type: TYPE.EGG, id: 0x0B, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Arachne Egg',  type: TYPE.EGG, id: 0x0C, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Battnel Egg',  type: TYPE.EGG, id: 0x0D, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Nyuel Egg',    type: TYPE.EGG, id: 0x0E, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Death Egg',    type: TYPE.EGG, id: 0x0F, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Clown Egg',    type: TYPE.EGG, id: 0x10, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Univern Egg',  type: TYPE.EGG, id: 0x11, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Unicorn Egg',  type: TYPE.EGG, id: 0x12, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Metal Egg',    type: TYPE.EGG, id: 0x13, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Block Egg',    type: TYPE.EGG, id: 0x14, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Pulunpa Egg',  type: TYPE.EGG, id: 0x15, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Troll Egg',    type: TYPE.EGG, id: 0x16, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Noise Egg',    type: TYPE.EGG, id: 0x17, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'U-Boat Egg',   type: TYPE.EGG, id: 0x18, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Baloon Egg',   type: TYPE.EGG, id: 0x19, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Dreamin Egg',  type: TYPE.EGG, id: 0x1A, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Blume Egg',    type: TYPE.EGG, id: 0x1B, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Volcano Egg',  type: TYPE.EGG, id: 0x1C, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Cyclone Egg',  type: TYPE.EGG, id: 0x1D, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Manoeva Egg',  type: TYPE.EGG, id: 0x1E, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Barong Egg',   type: TYPE.EGG, id: 0x1F, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Picket Egg',   type: TYPE.EGG, id: 0x20, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Kraken Egg',   type: TYPE.EGG, id: 0x21, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Weadog Egg',   type: TYPE.EGG, id: 0x22, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Stealth Egg',  type: TYPE.EGG, id: 0x23, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Viper Egg',    type: TYPE.EGG, id: 0x24, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Naplass Egg',  type: TYPE.EGG, id: 0x25, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Zu Egg',       type: TYPE.EGG, id: 0x26, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Mandara Egg',  type: TYPE.EGG, id: 0x27, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Killer Egg',   type: TYPE.EGG, id: 0x28, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Garuda Egg',   type: TYPE.EGG, id: 0x29, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Glacier Egg',  type: TYPE.EGG, id: 0x2A, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Tyrant Egg',   type: TYPE.EGG, id: 0x2B, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Golem Egg',    type: TYPE.EGG, id: 0x2C, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Maximum Egg',  type: TYPE.EGG, id: 0x2D, modifiers: 0x14, inPool: true, survival: 0,},
-    { name: 'Frog Egg',     type: TYPE.EGG, id: 0x2E, modifiers: 0x14, inPool: false, survival: 0,},
+    { name: 'Ultimate Egg', type: TYPE.EGG, id: 0x01, modifiers: 0x14, inPool: false, survival: 0, storeRank: 0, address: 0x4396a4,},
+    { name: 'Kewne Egg',    type: TYPE.EGG, id: 0x02, modifiers: 0x14, inPool: true, survival: 0, storeRank: 0, address: 0x4396b8,},
+    { name: 'Dragon Egg',   type: TYPE.EGG, id: 0x03, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4396cc,},
+    { name: 'Kid Egg',      type: TYPE.EGG, id: 0x04, modifiers: 0x14, inPool: true, survival: 0, storeRank: 2, address: 0x4396e0,},
+    { name: 'Ifrit Egg',    type: TYPE.EGG, id: 0x05, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4396f4,},
+    { name: 'Flame Egg',    type: TYPE.EGG, id: 0x06, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439708,},
+    { name: 'Grineut Egg',  type: TYPE.EGG, id: 0x07, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x43971c,},
+    { name: 'Griffon Egg',  type: TYPE.EGG, id: 0x08, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439730,},
+    { name: 'Saber Egg',    type: TYPE.EGG, id: 0x09, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439744,},
+    { name: 'Snowman Egg',  type: TYPE.EGG, id: 0x0A, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439758,},
+    { name: 'Ashra Egg',    type: TYPE.EGG, id: 0x0B, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x43976c,},
+    { name: 'Arachne Egg',  type: TYPE.EGG, id: 0x0C, modifiers: 0x14, inPool: true, survival: 0, storeRank: 2, address: 0x439780,},
+    { name: 'Battnel Egg',  type: TYPE.EGG, id: 0x0D, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439794,},
+    { name: 'Nyuel Egg',    type: TYPE.EGG, id: 0x0E, modifiers: 0x14, inPool: true, survival: 0, storeRank: 2, address: 0x4397a8,},
+    { name: 'Death Egg',    type: TYPE.EGG, id: 0x0F, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4397bc,},
+    { name: 'Clown Egg',    type: TYPE.EGG, id: 0x10, modifiers: 0x14, inPool: true, survival: 0, storeRank: 2, address: 0x4397d0,},
+    { name: 'Univern Egg',  type: TYPE.EGG, id: 0x11, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4397e4,},
+    { name: 'Unicorn Egg',  type: TYPE.EGG, id: 0x12, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4397f8,},
+    { name: 'Metal Egg',    type: TYPE.EGG, id: 0x13, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x43980c,},
+    { name: 'Block Egg',    type: TYPE.EGG, id: 0x14, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439820,},
+    { name: 'Pulunpa Egg',  type: TYPE.EGG, id: 0x15, modifiers: 0x14, inPool: true, survival: 0, storeRank: 0, address: 0x439834,},
+    { name: 'Troll Egg',    type: TYPE.EGG, id: 0x16, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439848,},
+    { name: 'Noise Egg',    type: TYPE.EGG, id: 0x17, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x43985c,},
+    { name: 'U-Boat Egg',   type: TYPE.EGG, id: 0x18, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439870,},
+    { name: 'Baloon Egg',   type: TYPE.EGG, id: 0x19, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439884,},
+    { name: 'Dreamin Egg',  type: TYPE.EGG, id: 0x1A, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439898,},
+    { name: 'Blume Egg',    type: TYPE.EGG, id: 0x1B, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4398ac,},
+    { name: 'Volcano Egg',  type: TYPE.EGG, id: 0x1C, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4398c0,},
+    { name: 'Cyclone Egg',  type: TYPE.EGG, id: 0x1D, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4398d4,},
+    { name: 'Manoeva Egg',  type: TYPE.EGG, id: 0x1E, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4398e8,},
+    { name: 'Barong Egg',   type: TYPE.EGG, id: 0x1F, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4398fc,},
+    { name: 'Picket Egg',   type: TYPE.EGG, id: 0x20, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439910,},
+    { name: 'Kraken Egg',   type: TYPE.EGG, id: 0x21, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439924,},
+    { name: 'Weadog Egg',   type: TYPE.EGG, id: 0x22, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439938,},
+    { name: 'Stealth Egg',  type: TYPE.EGG, id: 0x23, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x43994c,},
+    { name: 'Viper Egg',    type: TYPE.EGG, id: 0x24, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439960,},
+    { name: 'Naplass Egg',  type: TYPE.EGG, id: 0x25, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439974,},
+    { name: 'Zu Egg',       type: TYPE.EGG, id: 0x26, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439988,},
+    { name: 'Mandara Egg',  type: TYPE.EGG, id: 0x27, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x43999c,},
+    { name: 'Killer Egg',   type: TYPE.EGG, id: 0x28, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4399b0,},
+    { name: 'Garuda Egg',   type: TYPE.EGG, id: 0x29, modifiers: 0x14, inPool: true, survival: 0, storeRank: 0, address: 0x4399c4,},
+    { name: 'Glacier Egg',  type: TYPE.EGG, id: 0x2A, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4399d8,},
+    { name: 'Tyrant Egg',   type: TYPE.EGG, id: 0x2B, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x4399ec,},
+    { name: 'Golem Egg',    type: TYPE.EGG, id: 0x2C, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439a00,},
+    { name: 'Maximum Egg',  type: TYPE.EGG, id: 0x2D, modifiers: 0x14, inPool: true, survival: 0, storeRank: 1, address: 0x439a14,},
+    { name: 'Frog Egg',     type: TYPE.EGG, id: 0x2E, modifiers: 0x14, inPool: false, survival: 0, storeRank: 0, address: 0x439a28,},
   ]
 
   function itemsByType(type, ignorePool) {
@@ -214,6 +215,12 @@
     return items.filter(function(item) {
       return item.id == id && item.type == type
     })[0]
+  }
+
+  function itemsByStoreRank(minStoreRank) {
+    return items.filter(function(item) {
+      return item.storeRank >= minStoreRank;
+    });
   }
 
   function setStartingItems(options, data, hex) {
@@ -442,8 +449,173 @@
     }
   }
 
+  function applyRandomStore(options, data, hex) {
+    if (!options.randomStore) {
+      return;
+    }
+    data.writeInstruction(0xb6d8a4, 0x0400c624); // :80017f6c addiu a2, a2, 0x4
+    data.writeInstruction(0xb6d8c0, 0x0180023c); // :80017f88 lui v0, 0x8001
+    const copyStoreItemsCode = [
+      // :80017f90
+      {instruction: 0xd87f4724,}, // addiu a3, v0, +0x7fd8
+      {instruction: 0x0000e28c,}, // lw v0, 0x0(a3)
+      {instruction: 0x00000000,}, // nop
+      {instruction: 0x04004010,}, // beq v0, zero, +0x4
+      {instruction: 0x0000c2ac,}, // sw v0, 0x0(a2)
+      {instruction: 0x0400c624,}, // addiu a2, a2, 0x4
+      {instruction: 0xe55f0008,}, // j 0x80017f94
+      {instruction: 0x0400e724,}, // addiu a3, a3, 0x4
+      // :80017fb0
+      // old code
+      {instruction: 0x2800bf8f,}, // lw ra,local_8(sp)
+      {instruction: 0x2400b58f,}, // lw s5,local_c(sp)
+      {instruction: 0x2000b48f,}, // lw s4,local_10(sp)
+      {instruction: 0x1c00b38f,}, // lw s3,local_14(sp)
+      {instruction: 0x1800b28f,}, // lw s2,local_18(sp)
+      {instruction: 0x1400b18f,}, // lw s1,local_1c(sp)
+      {instruction: 0x1000b08f,}, // lw s0,local_20(sp)
+      {instruction: 0x3000bd27,}, // addiu sp,sp,0x30
+      {instruction: 0x0800e003,}, // jr ra
+      {instruction: 0x00000000,}, // _nop
+    ];
+    let codeAddr = 0xb6d8c8;
+    copyStoreItemsCode.forEach(
+      function(instruction) {
+        data.writeInstruction(codeAddr, instruction.instruction);
+        codeAddr += 4;
+      }
+    );
+    data.writeInstruction(0x9f8448, 0x00000000); // disable Kewne's pickup at tower entrance
+    const storeItems = [];
+    const lcgSeed = hex.length > randomStoreHexSeed ? Math.abs(hex[randomStoreHexSeed]) : 15;
+    const lcg = new util.LCG(constants.lcgConstants.modulus, constants.lcgConstants.multiplier, constants.lcgConstants.increment, lcgSeed);
+    const betterStoreItems = itemsByStoreRank(2);
+    const EQUIPMENT_ITEMS_TYPES = [TYPE.SWORD, TYPE.WAND, TYPE.SHIELD];
+    const MISC_ITEMS_TYPES = [
+      TYPE.HERB, TYPE.FRUIT, TYPE.SEED, TYPE.BALL, TYPE.SCROLL,
+      TYPE.CRYSTAL, TYPE.BELL, TYPE.GLASSES, TYPE.LOUPE, TYPE.SAND,
+      TYPE.SPECIAL
+    ];
+    const MAX_EQUIPMENT_ITEMS = 5;
+    const MAX_EGG_ITEMS = 5;
+    const MAX_MISC_ITEMS = 5;
+    var betterStoreItemsCount = 0;
+    var equipmentItemsCount = 0;
+    var hasWeapon = false
+    var hasShield = false
+    var eggsItemsCount = 0;
+    var miscItemsCount = 0;
+
+    function addStoreItem(item) {
+      if (storeItems.find((storeItem) => storeItem.category == item.type && storeItem.id == item.id)) {
+        return false;
+      }
+      if (item.type == TYPE.EGG) {
+        if (eggsItemsCount >= MAX_EGG_ITEMS) {
+          return false;
+        }
+        ++eggsItemsCount;
+      } else if (EQUIPMENT_ITEMS_TYPES.includes(item.type)) {
+        if (equipmentItemsCount >= MAX_EQUIPMENT_ITEMS) {
+          return false;
+        }
+        var equipmentItemsLeft = MAX_EQUIPMENT_ITEMS - equipmentItemsCount;
+        if (equipmentItemsLeft == 1) {
+          if (!hasShield && item.type != TYPE.SHIELD) {
+            return false;
+          }
+          if (!hasWeapon && ![TYPE.SWORD, TYPE.WAND].includes(item.type)) {
+            return false;
+          }
+        }
+        if (item.type == TYPE.SHIELD) {
+          hasShield = true;
+        } else {
+          hasWeapon = true;
+        }
+        ++equipmentItemsCount;
+      } else if (MISC_ITEMS_TYPES.includes(item.type)) {
+        if (miscItemsCount >= MAX_MISC_ITEMS) {
+          return false;
+        }
+        ++miscItemsCount;
+      }
+      if (betterStoreItems.find((storeItem) => item.type == storeItem.type && storeItem.id == item.id)) {
+        ++betterStoreItemsCount;
+      }
+      var modifier = 0;
+      if (item.type == TYPE.BALL) {
+        modifier = (item.id != 0x11) ? lcg.rollBetween(4, 7) : 1;
+      } else if (item.type == TYPE.EGG) {
+        modifier = 0x14;
+      }
+      storeItems.push({
+        id: item.id,
+        category: item.type,
+        modifier: modifier,
+        address: item.address
+      });
+      return true;
+    }
+
+    function addStoreItemFromPool(itemsPool) {
+      var i = lcg.rollBetween(0, itemsPool.length - 1);
+      addStoreItem(itemsPool[i]);
+    }
+
+    const possibleStoreItems = itemsByStoreRank(1);
+    const totalItemsCount = MAX_EQUIPMENT_ITEMS + MAX_EGG_ITEMS + MAX_MISC_ITEMS;
+    const minBetterItemsCount = 2;
+    while (storeItems.length < (totalItemsCount - minBetterItemsCount)) {
+      addStoreItemFromPool(possibleStoreItems);
+    }
+    while (betterStoreItemsCount < minBetterItemsCount) {
+      addStoreItemFromPool(betterStoreItems);
+    }
+    while (storeItems.length < totalItemsCount) {
+      addStoreItemFromPool(possibleStoreItems);
+    }
+
+    function compareItems(item1, item2) {
+      if (item1.category == item2.category) {
+        return item1.id - item2.id;
+      } else {
+        return item1.category - item2.category;
+      }
+    }
+
+    storeItems.sort(compareItems);
+    let itemsAddr = 0xb6d910;
+
+    function writeStoreItem(item) {
+      data.writeByte(itemsAddr + 0, item.id);
+      data.writeByte(itemsAddr + 1, item.category);
+      data.writeByte(itemsAddr + 2, item.modifier);
+      data.writeByte(itemsAddr + 3, 0);
+      var itemPriceAddr = item.address + itemOffsets.buyPrice;
+      if ((itemPriceAddr % 930) >= 0x818) {
+        itemPriceAddr += 0x130;
+      }
+      data.writeByte(itemPriceAddr + 0, 1);
+      data.writeByte(itemPriceAddr + 1, 0);
+      data.writeByte(itemPriceAddr + 2, 1);
+      data.writeByte(itemPriceAddr + 3, 0);
+      itemsAddr += 4;
+    }
+
+    for (let i = 0; i < 10; ++i) {
+      writeStoreItem(storeItems[i]);
+    }
+    itemsAddr += 0x130;
+    for (let i = 10; i < storeItems.length; ++i) {
+      writeStoreItem(storeItems[i]);
+    }
+    data.writeWord(itemsAddr, 0);
+  }
+
   const exports = {items: items,
-                   setStartingItems: setStartingItems,}
+                   setStartingItems: setStartingItems,
+                   applyRandomStore: applyRandomStore}
   if (self) {
     self.adRando = Object.assign(self.adRando || {}, {
       items: exports,

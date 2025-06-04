@@ -37,6 +37,7 @@ self.addEventListener('message', function(message) {
     //adRando.text.writeBattleTextToFile(check, adRando.constants.romAddresses.isExhaustedBattleText, "collapsed.\\p\\0")
     adRando.monsters.setEnemizer(options, check, hex, message.data.customSpawns)
     adRando.items.setStartingItems(options, check, hex)
+    adRando.items.applyRandomStore(options, check, hex)
     adRando.util.setAppliedOptions(options, check, hex)
     if (!!message.data.customFloor) {
       const exportBytes = adRando.pack.writeFloor(message.data.customFloor);
