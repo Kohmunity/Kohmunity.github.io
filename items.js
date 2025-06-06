@@ -129,8 +129,8 @@
     { name: 'Vital Sword',    type: TYPE.SWORD, id: 0x08, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 1, address: 0x5dee4,},
     { name: 'Dark Sword',     type: TYPE.SWORD, id: 0x09, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 2, address: 0x5def8,},
     { name: 'Holy Sword',     type: TYPE.SWORD, id: 0x0A, modifiers: 0x00, inPool: true,  survival: 0, storeRank: 2, address: 0x5df0c,},
-    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0B, modifiers: 0x00, inPool: false, survival: 0, storeRank: 2, address: 0x5df20,}, //cutscene version
-    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0C, modifiers: 0x00, inPool: true,  survival: 1, storeRank: 0, address: 0x5df34,},
+    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0B, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df20,}, //cutscene version
+    { name: 'Seraphim Sword', type: TYPE.SWORD, id: 0x0C, modifiers: 0x00, inPool: true,  survival: 1, storeRank: 2, address: 0x5df34,},
     { name: 'Troll Sword',    type: TYPE.SWORD, id: 0x0D, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df48,},
     { name: 'Hammer',         type: TYPE.SWORD, id: 0x0E, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df5c,},
     { name: 'Bow Gun',        type: TYPE.SWORD, id: 0x0F, modifiers: 0x00, inPool: false, survival: 0, storeRank: 0, address: 0x5df70,},
@@ -454,15 +454,22 @@
       return;
     }
     data.writeInstruction(0xb6d8a4, 0x0400c624); // :80017f6c addiu a2, a2, 0x4
-    data.writeInstruction(0xb6d8c0, 0x0180023c); // :80017f88 lui v0, 0x8001
+    data.writeInstruction(0xb6d8c0, 0x5c804724); // :80017f88 addiu a3, v0, -0x7fa4
     const copyStoreItemsCode = [
       // :80017f90
-      {instruction: 0xd87f4724,}, // addiu a3, v0, +0x7fd8
-      {instruction: 0x0000e28c,}, // lw v0, 0x0(a3)
-      {instruction: 0x00000000,}, // nop
-      {instruction: 0x04004010,}, // beq v0, zero, +0x4
-      {instruction: 0x0000c2ac,}, // sw v0, 0x0(a2)
-      {instruction: 0x0400c624,}, // addiu a2, a2, 0x4
+      {instruction: 0x0000d124,}, // addiu s1, a2, 0x0
+      {instruction: 0x0000f28c,}, // lw s2, 0x0(a3)
+      {instruction: 0x0080133c,}, // lui s3, 0x8000
+      {instruction: 0x0b004012,}, // beq s2, r0 +0x30
+      {instruction: 0x000032ae,}, // sw s2, 0x0(s1)
+      {instruction: 0xff004432,}, // andi a0, s2, 0xff
+      {instruction: 0x032a1200,}, // sra a1, s2, 0x8
+      {instruction: 0x0c7e020c,}, // jal 8009f830
+      {instruction: 0xff00a530,}, // andi a1, a1, 0xff
+      {instruction: 0x02004010,}, // beq v0, r0, +0x8
+      {instruction: 0x25905302,}, // or s2, s2, s3
+      {instruction: 0x000032ae,}, // sw s2, 0x0(s1)
+      {instruction: 0x04003126,}, // addiu s1, s1, 0x4
       {instruction: 0xe55f0008,}, // j 0x80017f94
       {instruction: 0x0400e724,}, // addiu a3, a3, 0x4
       // :80017fb0
@@ -481,11 +488,17 @@
     let codeAddr = 0xb6d8c8;
     copyStoreItemsCode.forEach(
       function(instruction) {
+        if ((codeAddr % 0x930) >= 0x818) {
+          codeAddr += 0x130;
+        }
         data.writeInstruction(codeAddr, instruction.instruction);
         codeAddr += 4;
       }
     );
     data.writeInstruction(0x9f8448, 0x00000000); // disable Kewne's pickup at tower entrance
+    // move Koh to spawn in front of Fur's store when exiting Koh's house
+    data.writeShort(0xb62e60, 0xfe80);
+    data.writeShort(0xb62e62, 0x920);
     const storeItems = [];
     const lcgSeed = hex.length > randomStoreHexSeed ? Math.abs(hex[randomStoreHexSeed]) : 15;
     const lcg = new util.LCG(constants.lcgConstants.modulus, constants.lcgConstants.multiplier, constants.lcgConstants.increment, lcgSeed);
@@ -546,6 +559,8 @@
       var modifier = 0;
       if (item.type == TYPE.BALL) {
         modifier = (item.id != 0x11) ? lcg.rollBetween(4, 7) : 1;
+      } else if (item.type == TYPE.SWORD || item.type == TYPE.SHIELD) {
+        modifier = lcg.rollBetween(0, 2);
       } else if (item.type == TYPE.EGG) {
         modifier = 0x14;
       }
@@ -585,15 +600,18 @@
     }
 
     storeItems.sort(compareItems);
-    let itemsAddr = 0xb6d910;
+    let itemsAddr = 0xb6dac4;
 
     function writeStoreItem(item) {
+      if ((itemsAddr % 0x930) >= 0x818) {
+        itemsAddr += 0x130;
+      }
       data.writeByte(itemsAddr + 0, item.id);
       data.writeByte(itemsAddr + 1, item.category);
       data.writeByte(itemsAddr + 2, item.modifier);
       data.writeByte(itemsAddr + 3, 0);
       var itemPriceAddr = item.address + itemOffsets.buyPrice;
-      if ((itemPriceAddr % 930) >= 0x818) {
+      if ((itemPriceAddr % 0x930) >= 0x818) {
         itemPriceAddr += 0x130;
       }
       data.writeByte(itemPriceAddr + 0, 1);
@@ -603,11 +621,7 @@
       itemsAddr += 4;
     }
 
-    for (let i = 0; i < 10; ++i) {
-      writeStoreItem(storeItems[i]);
-    }
-    itemsAddr += 0x130;
-    for (let i = 10; i < storeItems.length; ++i) {
+    for (let i = 0; i < storeItems.length; ++i) {
       writeStoreItem(storeItems[i]);
     }
     data.writeWord(itemsAddr, 0);

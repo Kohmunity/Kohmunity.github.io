@@ -273,7 +273,7 @@
 
    const disableObfuscationTooltip = 'Disables items obfuscation when entering 2nd tower. Eggs obfuscation remains intact.';
 
-   const randomStoreTooltip = 'Fur\'s store will sell 15 random items.';
+   const randomStoreTooltip = 'Fur\'s store will sell 15 random items. Koh\'s starting position is in front of Fur\'s store. (v2)';
  
   const kohElementOptions =
   {
