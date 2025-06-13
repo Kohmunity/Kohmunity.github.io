@@ -495,7 +495,11 @@
         codeAddr += 4;
       }
     );
-    data.writeInstruction(0x9f8448, 0x00000000); // disable Kewne's pickup at tower entrance
+    // modify ball and equipment price function to always return 1
+    data.writeInstruction(0x2ff8c, 0x0800e003); // jr ra
+    data.writeInstruction(0x2ff90, 0x01000224); // addiu v0, r0, 0x1
+    // disable Kewne's pickup at tower entrance
+    data.writeInstruction(0x9f8448, 0x00000000); // nop
     // move Koh to spawn in front of Fur's store when exiting Koh's house
     data.writeShort(0xb62e60, 0xfe80);
     data.writeShort(0xb62e62, 0x920);
@@ -614,10 +618,18 @@
       if ((itemPriceAddr % 0x930) >= 0x818) {
         itemPriceAddr += 0x130;
       }
-      data.writeByte(itemPriceAddr + 0, 1);
-      data.writeByte(itemPriceAddr + 1, 0);
+      if (item.category != TYPE.BALL) {
+        data.writeByte(itemPriceAddr + 0, 1);
+        data.writeByte(itemPriceAddr + 1, 0);
+      }
       data.writeByte(itemPriceAddr + 2, 1);
       data.writeByte(itemPriceAddr + 3, 0);
+      if (item.category == TYPE.EGG) {
+        data.writeByte(itemPriceAddr + 0x1d43d50, 1);
+        data.writeByte(itemPriceAddr + 0x1d43d51, 0);
+        data.writeByte(itemPriceAddr + 0x1d43d52, 1);
+        data.writeByte(itemPriceAddr + 0x1d43d53, 0);
+      }
       itemsAddr += 4;
     }
 
